@@ -15,48 +15,48 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Programm.cpp">
+    <ClCompile Include="Moduls\Controller.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Controller.cpp">
+    <ClCompile Include="Moduls\Converter.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Reader.cpp">
+    <ClCompile Include="Moduls\MERSolver.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Writer.cpp">
+    <ClCompile Include="Moduls\Reader.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="MERSolver.cpp">
+    <ClCompile Include="Moduls\Render.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Render.cpp">
+    <ClCompile Include="Moduls\Writer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Converter.cpp">
+    <ClCompile Include="Main\Programm.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Controller.h">
+    <ClInclude Include="Moduls\Controller.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Reader.h">
+    <ClInclude Include="Moduls\Converter.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Writer.h">
+    <ClInclude Include="Moduls\MERSolver.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="MERSolver.h">
+    <ClInclude Include="Moduls\Reader.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Render.h">
+    <ClInclude Include="Moduls\Render.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Converter.h">
+    <ClInclude Include="Moduls\Types.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Types.h">
+    <ClInclude Include="Moduls\Writer.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
