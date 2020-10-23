@@ -1,49 +1,56 @@
-/*#include "Controller.h"
+#include "Controller.h"
 #include <SFML/Graphics.hpp>
 #include "SFML/System.hpp"
 #include <fstream>
-// константы для кнопок
 
-static const rectangle l_b = { {10,10}, {20,20} };
-static const rectangle r_b = { {40,10}, {50, 20} };
+// константы для кнопок
+static rectangle l_b = { {100, 300}, {180, 340} };
+static rectangle r_b = { {350, 300}, {485, 340} };
 
 Controller::Controller() {
+
 
 
 }
 
 void Controller::run() {
 
-	rectangle left_button = l_b;
-	rectangle right_button = r_b;
-
-	Render render(left_button, right_button);
 	sf::Event event;
+	Render render(l_b, r_b);
+
+	sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "MER programm");
+	window.setFramerateLimit(60);
 
 	int input = 0;
-	while (render.is_window_open() && (!input)) {
+	while (window.isOpen() && (!input)) {
 
-		render.start();
+		render.buttons("INPUT", window);
 
-		while (render.poll_event(event)) {
+		while (window.pollEvent(event)) {
 
 			if (event.type == sf::Event::Closed) {
 
-				render.close();
+				window.close();
+
+			}
+
+			if (event.type = sf::Event::KeyPressed) {
+
+				if (event.key.code == sf::Keyboard::Escape) window.close();
 
 			}
 
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 
-				sf::Vector2i localPosition = render.get_mouse_position();
+				sf::Vector2i localPosition =  sf::Mouse::getPosition(window);
 
-				if ((localPosition.x > 300)) {
+				if ((localPosition.x > l_b.lb.x) and (localPosition.x < l_b.rt.x) and (localPosition.y > l_b.lb.y) and (localPosition.y < l_b.rt.y)) {
 
 					input = 1;
 
 				}
 
-				else if (localPosition.x <= 300) {
+				if ((localPosition.x > r_b.lb.x) and (localPosition.x < r_b.rt.x) and (localPosition.y > r_b.lb.y) and (localPosition.y < r_b.rt.y)) {
 
 					input = -1;
 
@@ -58,11 +65,18 @@ void Controller::run() {
 	std::string fname_input = "input.txt";
 	if (input == 1) {
 
-		std::cin >> fname_input;
+		std::cout << "Print file for input name: ";
+		std::getline(std::cin,fname_input);
 
 	}
+	else {
+
+		std::cout << "Print data: " << std::endl;
+
+	}
+
 	std::ifstream ifs(fname_input, std::ifstream::in);
-	std::istream& is = input == -1 ? ifs : std::cin;
+	std::istream& is = input == 1 ? ifs : std::cin;
 
 	Reader reader(is);
 	Converter converter;
@@ -73,29 +87,35 @@ void Controller::run() {
 	rectangle solution = solver.get_solution(md);
 
 	input = 0;
-	while (render.is_window_open() && (!input)) {
+	while (window.isOpen() && (!input)) {
 
-		render.end();
+		render.buttons("OUTPUT", window);
 
-		while (render.poll_event(event)) {
+		while (window.pollEvent(event)) {
 
 			if (event.type == sf::Event::Closed) {
 
-				render.close();
+				window.close();
+
+			}
+
+			if (event.type = sf::Event::KeyPressed) {
+
+				if (event.key.code == sf::Keyboard::Escape) window.close();
 
 			}
 
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 
-				sf::Vector2i localPosition = render.get_mouse_position();
+				sf::Vector2i localPosition =  sf::Mouse::getPosition(window);
 
-				if ((localPosition.x > 300)) {
+				if ((localPosition.x > l_b.lb.x) and (localPosition.x < l_b.rt.x) and (localPosition.y > l_b.lb.y) and (localPosition.y < l_b.rt.y)) {
 
 					input = 1;
 
 				}
 
-				else if (localPosition.x <= 300) {
+				if ((localPosition.x > r_b.lb.x) and (localPosition.x < r_b.rt.x) and (localPosition.y > r_b.lb.y) and (localPosition.y < r_b.rt.y)) {
 
 					input = -1;
 
@@ -110,25 +130,38 @@ void Controller::run() {
 	std::string fname_output = "output.txt";
 	if (input == 1) {
 
-		std::cin >> fname_output;
+		std::cout << "Print file for output name: ";
+		std::getline(std::cin, fname_output);
 
 	}
+	else {
+
+		std::cout << "Solution: " << std::endl;
+
+	}
+
 	std::ofstream ofs(fname_output, std::ofstream::out);
-	std::ostream& os = input == -1 ? ofs : std::cout;
+	std::ostream& os = input == 1 ? ofs : std::cout;
 
 	Writer writer(os);
+	writer.write_output_data(solution);
 
-	while (render.is_window_open()) {
+	while (window.isOpen()) {
 
 		if (event.type == sf::Event::Closed) {
 
-			render.close();
+			window.close();
 
 		}
 
-		render.solution(id, solution);
+		if (event.type = sf::Event::KeyPressed) {
+
+			if (event.key.code == sf::Keyboard::Escape) window.close();
+
+		}
+
+		render.solution(id, solution, window);
 
 	}
 
 }
-*/

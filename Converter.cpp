@@ -81,7 +81,7 @@ MERdata Converter::convert(input_data d, int dist) {
 
 		}
 
-		bool l = true, r = true, t = true, b = true;
+		l = true, r = true, t = true, b = true;
 
 	}
 
@@ -111,7 +111,7 @@ MERdata Converter::convert(input_data d, int dist) {
 
 		}
 
-		if (!l) {
+		if (l) {
 
 			int diff = rect.rt.y - rect.lb.y;
 
@@ -122,13 +122,13 @@ MERdata Converter::convert(input_data d, int dist) {
 			}
 
 			diff = rect.rt.x - rect.lb.x;
-			if (!t) {
+			if (t) {
 
 				md.S.push_back({rect.lb.x - dist, rect.rt.y + dist});
 
 			}
 
-			if (!b) {
+			if (b) {
 
 				md.S.push_back({rect.lb.x - dist, rect.lb.y - dist});
 
@@ -138,7 +138,7 @@ MERdata Converter::convert(input_data d, int dist) {
 		}
 
 		int diff = rect.rt.x - rect.lb.x;
-		if (!t) {
+		if (t) {
 
 			for (int x = 0; x <= diff; x++) {
 
@@ -148,7 +148,7 @@ MERdata Converter::convert(input_data d, int dist) {
 
 		}
 
-		if (!b) {
+		if (b) {
 
 			for (int x = 0; x <= diff; x++) {
 
@@ -159,7 +159,7 @@ MERdata Converter::convert(input_data d, int dist) {
 		}
 
 
-		if (!r) {
+		if (r) {
 
 			int diff = rect.rt.y - rect.lb.y;
 
@@ -169,13 +169,13 @@ MERdata Converter::convert(input_data d, int dist) {
 
 			}
 
-			if (!t) {
+			if (t) {
 
 				md.S.push_back({rect.rt.x + dist, rect.rt.y + dist});
 
 			}
 
-			if (!b) {
+			if (b) {
 
 				md.S.push_back({rect.rt.x + dist, rect.lb.y - dist});
 
@@ -183,7 +183,7 @@ MERdata Converter::convert(input_data d, int dist) {
 
 		}
 
-		bool l = true, r = true, t = true, b = true;
+		l = true, r = true, t = true, b = true;
 
 	}
 

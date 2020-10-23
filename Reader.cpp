@@ -11,15 +11,17 @@ input_data Reader::read() {
 	input_data d;
 	is >> d.A.lb.x;
 	is >> d.A.lb.y;
+	is >> d.A.rt.x;
+	is >> d.A.rt.y;
 
 	int n;
 	is >> n;
 	d.T.resize(n);
 
-	for (auto p: d.T) {
+	for (int i = 0; i < n; i++) {
 		
-		is >> p.x;
-		is >> p.y;
+		is >> d.T[i].x;
+		is >> d.T[i].y;
 
 	}
 
@@ -27,12 +29,12 @@ input_data Reader::read() {
 	is >> k;
 	d.B.resize(k);
 
-	for (auto b : d.B) {
+	for (int i = 0; i < k; i++) {
 
-		is >> b.lb.x;
-		is >> b.lb.y;
-		is >> b.rt.x;
-		is >> b.rt.y;
+		is >> d.B[i].lb.x;
+		is >> d.B[i].lb.y;
+		is >> d.B[i].rt.x;
+		is >> d.B[i].rt.y;
 
 	}
 

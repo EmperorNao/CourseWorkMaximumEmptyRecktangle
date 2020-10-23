@@ -2,6 +2,8 @@
 #include <iostream>
 #include <vector>
 
+static const int WINDOW_SIZE = 600;
+
 struct point {
 
 	int x;
