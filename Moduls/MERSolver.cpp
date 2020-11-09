@@ -168,7 +168,7 @@ rectangle MERSolver::solve(MERdata md) {
 
 		points.push_back(md.A.rt.x); 
 
-		int r = *std::min_element(points.begin(), points.end());
+		int l = *std::min_element(points.begin(), points.end());
 
 		points.resize(0);
 
@@ -184,9 +184,9 @@ rectangle MERSolver::solve(MERdata md) {
 
 		points.push_back(md.A.lb.x); 
 
-		int l = *std::max_element(points.begin(), points.end());
+		int r = *std::max_element(points.begin(), points.end());
 
-		save_best_params(r, l,  md.S[i].y, md.A.rt.y);
+		save_best_params(l, r,  md.S[i].y, md.A.rt.y);
 
 	}
 

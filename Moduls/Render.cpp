@@ -47,11 +47,17 @@ void Render::solution(input_data d, rectangle solution, sf::RenderWindow& w) {
 	w.clear();
 	int shape_size = (d.A.rt.x - d.A.lb.x) > (d.A.rt.y - d.A.lb.y) ? (d.A.rt.x - d.A.lb.x) : (d.A.rt.y - d.A.lb.y);
 	shape_size = WINDOW_SIZE / shape_size;
-	sf::RectangleShape shape(sf::Vector2f((solution.rt.x - solution.lb.x) * shape_size, (solution.rt.y - solution.lb.y) * shape_size));
+
+	sf::RectangleShape shape(sf::Vector2f((d.A.rt.x - d.A.lb.x) * shape_size, (d.A.rt.y - d.A.lb.y) * shape_size));
+	shape.setPosition(0, 0);
+	shape.setFillColor(sf::Color::White);
+	w.draw(shape);
+	
+	shape.setSize(sf::Vector2f((solution.rt.x - solution.lb.x) * shape_size, (solution.rt.y - solution.lb.y) * shape_size));
 	shape.setPosition(solution.lb.x * shape_size, WINDOW_SIZE - solution.rt.y * shape_size);
 	shape.setOutlineColor(sf::Color::White);
 	shape.setOutlineThickness(1.f);
-	shape.setFillColor(sf::Color::Blue);
+	shape.setFillColor(sf::Color::Red);
 	w.draw(shape);
 	
 	sf::CircleShape circle(shape_size/4);
@@ -65,7 +71,7 @@ void Render::solution(input_data d, rectangle solution, sf::RenderWindow& w) {
 
 	}
 
-	shape.setFillColor(sf::Color::Cyan);
+	shape.setFillColor(sf::Color::Blue);
 	for (auto b : d.B) {
 
 		shape.setSize(sf::Vector2f((b.rt.x - b.lb.x) * shape_size, (b.rt.y - b.lb.y) * shape_size));

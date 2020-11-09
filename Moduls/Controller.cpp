@@ -9,8 +9,6 @@ static rectangle r_b = { {350, 300}, {485, 340} };
 
 Controller::Controller() {
 
-
-
 }
 
 void Controller::run() {
@@ -63,19 +61,34 @@ void Controller::run() {
 	}
 
 	std::string fname_input = "input.txt";
+	std::ifstream ifs;
 	if (input == 1) {
 
-		std::cout << "Print file for input name: ";
-		std::getline(std::cin,fname_input);
+		ifs.exceptions(std::ifstream::failbit);
+		while (!ifs.is_open()) {
+
+			try {
+
+				std::cout << "Введите имя файла с входными данными: ";
+				std::getline(std::cin, fname_input);
+				ifs.open(fname_input, std::ifstream::out);
+
+			}
+			catch (const std::ifstream::failure & e) {
+
+				std::cout << "Невозможно открыть файл, проверьте его имя и попробуйте ещё раз.\n";
+
+			}
+
+		}
 
 	}
 	else {
 
-		std::cout << "Print data: " << std::endl;
+		std::cout << "Введите данные: " << std::endl;
 
 	}
 
-	std::ifstream ifs(fname_input, std::ifstream::in);
 	std::istream& is = input == 1 ? ifs : std::cin;
 
 	Reader reader(is);
@@ -128,19 +141,33 @@ void Controller::run() {
 	}
 
 	std::string fname_output = "output.txt";
+	std::ofstream ofs;
 	if (input == 1) {
 
-		std::cout << "Print file for output name: ";
-		std::getline(std::cin, fname_output);
+		ofs.exceptions(std::ofstream::failbit);
+		while (!ofs.is_open()) {
+
+			try {
+
+				std::cout << "Введите имя файла для вывода: ";
+				std::getline(std::cin, fname_output);
+				ofs.open(fname_output, std::ofstream::out);
+
+			}
+			catch (std::ios_base::failure & fail) {
+
+				std::cout << "Невозможно открыть файл, попробуйте ещё раз.\n";
+
+			}
+
+		}
 
 	}
 	else {
 
-		std::cout << "Solution: " << std::endl;
+		std::cout << "Решение: " << std::endl;
 
 	}
-
-	std::ofstream ofs(fname_output, std::ofstream::out);
 	std::ostream& os = input == 1 ? ofs : std::cout;
 
 	Writer writer(os);
